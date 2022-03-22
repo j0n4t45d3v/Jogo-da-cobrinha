@@ -6,6 +6,7 @@ cobra[0] = {
     x: 8 * box,
     y: 8 * box
 }
+let direcao = 'right'
 
 function criarBG(){
     contexto.fillStyle = 'lightgreen'
@@ -19,5 +20,27 @@ function criarCobrinha(){
     }
 }
 
-criarBG()
-criarCobrinha()
+function iniciarJogo(){
+    criarBG()
+    criarCobrinha()
+
+    let cobraX = cobra[0].x
+    let cobraY = cobra[0].y
+
+    if(direcao == 'rigth') cobraX += box
+    if(direcao == 'left') cobraX -= box
+    if(direcao == 'up') cobraY += box
+    if(direcao == 'down') cobra -= box
+
+    cobra.pop()
+
+    let novaCabeca = {
+        x: cobraX,
+        y: cobraY
+    }
+
+    cobra.unshift(novaCabeca)
+
+}
+
+let jogo = setInterval(iniciarJogo, 100)
